@@ -5,18 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import MainNavbar from './components/MainNavbar';
-import InputBox from './components/InputBox';
-import Dropdown from './components/Dropdown';
-import DisplayImage from './components/DisplayImage';
-import HomePage from './components/HomePage';
+import App from './App.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router>
-     <HomePage></HomePage>
-    </Router>
+      <App />
   </React.StrictMode>
 );
 

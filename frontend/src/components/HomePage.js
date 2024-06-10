@@ -4,6 +4,7 @@ import InputBox from './InputBox';
 import Dropdown from './Dropdown';
 import DisplayImage from './DisplayImage';
 import catData from "./cat.json";
+import filterMaps from './filterMaps';
 
 function HomePage() {
     const [clothesData, setClothesData] = useState(null);
@@ -91,10 +92,9 @@ function HomePage() {
 
     return (
         <div>
-            <MainNavbar />
             <InputBox zip="Zip Code" handleZipCode={handleZipCode} />
-            <Dropdown field="Color" one="Black" two="Blue" three="Green" four="Red" five="White" handleColorFilter={handleColorFilter} typeD="Color" />
-            <Dropdown field="Clothing" one="Jacket" two="Jeans" three="Sweater" four="T-shirt" five="Dress" handleTypeFilter={handleTypeFilter} typeD="Typer" />
+            <Dropdown field="Color" options={filterMaps[0]} handleColorFilter={handleColorFilter} typeD="Color" />
+            <Dropdown field="Clothing" options={filterMaps[1]} handleTypeFilter={handleTypeFilter} typeD="Typer" />
             <DisplayImage sc={chosenImage} />
         </div>
     );

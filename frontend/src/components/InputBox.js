@@ -7,8 +7,6 @@ function InputBox({ qfields, handleZipCode }) {
   const [weatherResponse, setWeatherResponse] = useState(null);
   const [clothesData, setClothesData] = useState(null);
 
- 
-
   const handleSetZipCode = (e) => {
     setZipCode(e.target.value);
     
@@ -32,7 +30,9 @@ function InputBox({ qfields, handleZipCode }) {
             placeholder="Enter Zip Code Here"
             value={zipCode}
             onChange={handleSetZipCode}
-            style={{ flex: "4" }}
+            style={{ flex: "4", 
+              borderColor: "#000000",
+            }}
         />
         <button
             type="submit"
