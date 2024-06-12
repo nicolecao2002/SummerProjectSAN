@@ -5,6 +5,7 @@ import Dropdown from './Dropdown';
 import DisplayImage from './DisplayImage';
 import catData from "./cat.json";
 import filterMaps from './filterMaps';
+import { Row, Col } from 'react-bootstrap'; 
 
 function HomePage() {
     const [clothesData, setClothesData] = useState(null);
@@ -19,9 +20,9 @@ function HomePage() {
     const [weatherResponse, setWeatherResponse] = useState(null);
     const [backEndArray, setBackEndArray] = useState(null);
 
-    const colorDict = { "1": "Black", "2": "Blue", "3": "Green", "4": "Red", "5": "White" };
-    const brandDict = { "1": "Under Armour", "2": "Nike", "3": "Adidas", "4": "Puma" };
-    const typeDict = { "1": "Jackets", "2": "Jeans", "3": "Sweater", "4": "T-shirt", "5": "Dress" };
+    const colorsList = ["Black", "Blue", "Green", "Red", "White"];
+    const brandsList = ["Under Armour", "Nike", "Adidas", "Puma"];
+    const typesList = ["Jackets", "Jeans", "Sweater", "T-shirt", "Dress"];
 
     function filterItems() {
         console.log("chosen type", chosenType);
@@ -45,8 +46,8 @@ function HomePage() {
                 colorChoice,
             };
 
-                fetch( 'http://localhost:5000/predict', {
-                method: 'GET',
+            fetch('http://localhost:5000/predict', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -65,8 +66,6 @@ function HomePage() {
     }
 
     const handleZipCode = (zipCode) => {
-        // ... (existing code)
-
         fetch(`http://api.weatherapi.com/v1/forecast.json?key=ceb4db99cfc5455fa0634034240402&q=${zipCode}&days=2&aqi=no&alerts=no`, {
             method: 'GET',
         })
@@ -79,27 +78,31 @@ function HomePage() {
             });
     }
 
-    const handleTypeFilter = (ty) => {
-        setChosenType(typeDict[ty]);
+    const handleTypeFilter = (type) => {
+        setChosenType(type);
         filterItems();
     }
 
-    const handleColorFilter = (col) => {
-        const temp = Math.floor(Math.random() * 3) + 1
-        setChosenBrand(brandDict[temp]);
-        setColorChoice(colorDict[col]);
+    const handleColorFilter = (color) => {
+        const randomBrand = brandsList[Math.floor(Math.random() * brandsList.length)];
+        setChosenBrand(randomBrand);
+        setColorChoice(color);
     }
 
     return (
         <div>
             <InputBox zip="Zip Code" handleZipCode={handleZipCode} />
-            <Dropdown field="Color" options={filterMaps[0]} handleColorFilter={handleColorFilter} typeD="Color" />
-            <Dropdown field="Clothing" options={filterMaps[1]} handleTypeFilter={handleTypeFilter} typeD="Typer" />
+            <Row className="d-flex justify-content-center dropdown-container">
+                <Col xs="auto">
+                    <Dropdown field="Color" options={filterMaps[0]} handleColorFilter={handleColorFilter} typeD="Color" />
+                </Col>
+                <Col xs="auto">
+                    <Dropdown field="Clothing" options={filterMaps[1]} handleTypeFilter={handleTypeFilter} typeD="Type" />
+                </Col>
+            </Row>
             <DisplayImage sc={chosenImage} />
         </div>
     );
 }
 
 export default HomePage;
-
-

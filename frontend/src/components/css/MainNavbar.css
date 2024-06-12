@@ -12,7 +12,7 @@ body {
 }
 
 header {
-  background: #573AFD;
+  background-color: rgba(0, 0, 0, 0.45); /* Adjust the opacity as needed */
 }
 
 header::after {

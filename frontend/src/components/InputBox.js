@@ -21,7 +21,7 @@ function InputBox({ qfields, handleZipCode }) {
     <form
         onSubmit={handleSubmit}
         className="search-form"
-        style={{ margin: "20px auto", maxWidth: "200px" }}
+        style={{ margin: "20px auto", maxWidth: "300px" }}
     >
         <div className="input-group mb-3">
         <input

@@ -5,7 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function MainNavbar() {
   return (
-    <Navbar expand="lg" id='Nbar' style={{ color: "white" }}>
+    <header style={{ color: "white" }}>
+      <div className="dark-overlay"></div>
       <div className="container">
         <h1 className="logo">
           <Link to="/home" className="nav-link">
@@ -32,7 +33,7 @@ function MainNavbar() {
           </ul>
         </nav>
       </div>
-    </Navbar>
+    </header>
   );
 }
 
